@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.0/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  
+</head>
+
+<body>
+  <script src="index.js"></script>
+
+  <!-- <script>
+    d3.csv('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2814973/atp_wta.csv')
+      .then(makeChart);
+
+    function makeChart(players) {
+      // var playerLabels = players.map(function (d) {
+      //   return d.Name;
+      // });
+      // var weeksData = players.map(function (d) {
+      //   return d.Weeks;
+      // });
+      var chart = new Chart('chart', {
+        type: 'bar',
+        data: {
+          labels: ["February", "March", "April"],
+          datasets: [
+            {
+              label: "Year 1",
+              data: [1021, 1434, 1032],
+              backgroundColor: "#9FE0F8",
+              borderRadius: 5,
+              borderSkipped: false
+            },
+            {
+              label: "Year 2",
+              data: [1121, 1734, 1692],
+              backgroundColor: "#093EDD",
+              borderRadius: 5,
+              borderSkipped: false
+
+            }
+          ]
+        },
+        options: {
+          plugins: {
+            legend: {
+              align: "end",
+            },
+            plugins: {
+              datalabels: {
+                color: 'blue',
+                labels: {
+                  title: {
+                    font: {
+                      weight: 'bold'
+                    }
+                  },
+                  value: {
+                    color: 'green'
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+  </script> -->
+  <div id="wrapper">
+    <canvas id="chart"></canvas>
+  </div>
+
+</body>
+
+</html>
