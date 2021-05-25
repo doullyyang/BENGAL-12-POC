@@ -38,7 +38,7 @@ var chart = new Chart('chart', {
     },
     plugins: {
       legend: {
-        align: "end",
+        display: false
       },
       plugins: {
         datalabels: {
