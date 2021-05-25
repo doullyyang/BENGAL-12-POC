@@ -11,14 +11,14 @@ var chart = new Chart('chart', {
     labels: ["February", "March", "April"],
     datasets: [
       {
-        label: "Year 1",
+        label: "Last Year",
         data: [1021, 1434, 1032],
         backgroundColor: "#9FE0F8",
         borderRadius: 5,
         borderSkipped: false
       },
       {
-        label: "Year 2",
+        label: "This Year",
         data: [1121, 1734, 1692],
         backgroundColor: "#093EDD",
         borderRadius: 5,
