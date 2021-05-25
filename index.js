@@ -1,0 +1,53 @@
+// import ChartDataLabels from 'chartjs-plugin-datalabels';
+// debugger
+// console.log(ChartDataLabels)
+d3.csv('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2814973/atp_wta.csv')
+.then(makeChart);
+
+function makeChart(players) {
+var chart = new Chart('chart', {
+  type: 'bar',
+  data: {
+    labels: ["February", "March", "April"],
+    datasets: [
+      {
+        label: "Year 1",
+        data: [1021, 1434, 1032],
+        backgroundColor: "#9FE0F8",
+        borderRadius: 5,
+        borderSkipped: false
+      },
+      {
+        label: "Year 2",
+        data: [1121, 1734, 1692],
+        backgroundColor: "#093EDD",
+        borderRadius: 5,
+        borderSkipped: false
+
+      }
+    ]
+  },
+  options: {
+    plugins: {
+      legend: {
+        align: "end",
+      },
+      plugins: {
+        datalabels: {
+          color: 'blue',
+          labels: {
+            title: {
+              font: {
+                weight: 'bold'
+              }
+            },
+            value: {
+              color: 'green'
+            }
+          }
+        }
+      }
+    }
+  }
+});
+}
