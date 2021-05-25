@@ -34,7 +34,7 @@ function makeChart() {
       ]
     },
     options: {
-      barRoundness: 0.5,
+      cornerRadius: 20,
       legend: {
         display: false
       },
