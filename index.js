@@ -28,6 +28,14 @@ var chart = new Chart('chart', {
     ]
   },
   options: {
+    scales: {
+      y: {
+        display: false
+      },
+      x: {
+        display: false
+      },
+    },
     plugins: {
       legend: {
         align: "end",
