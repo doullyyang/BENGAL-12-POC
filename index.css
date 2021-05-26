@@ -77,3 +77,7 @@ hr {
 .x-axis-label .month {
     font-weight: bold;
 }
+
+button {
+    margin-top: 50px;
+}
