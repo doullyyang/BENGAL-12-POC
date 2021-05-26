@@ -1,17 +1,17 @@
-d3.csv('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2814973/atp_wta.csv')
+d3.csv('/sample_2.csv')
   .then(makeChart);
 
 Chart.plugins.register(ChartDataLabels);
 
-function makeChart() {
+function makeChart(accountData) {
   var chart = new Chart('chart', {
     type: 'bar',
     data: {
-      labels: ["February", "March", "April"],
+      labels: [accountData[0]["Month_1"], accountData[0]["Month_2"], accountData[0]["Month_3"]],
       datasets: [
         {
           label: "Last Year",
-          data: [1021, 1434, 1032],
+          data: [accountData[0]["Last Year Cost($)_1"], accountData[0]["Last Year Cost($)_2"], accountData[0]["Last Year Cost($)_3"]],
           backgroundColor: "#9FE0F8",
           borderRadius: 5,
           borderSkipped: false,
@@ -22,7 +22,7 @@ function makeChart() {
         },
         {
           label: "This Year",
-          data: [1121, 1734, 1692],
+          data: [accountData[0]["This Year Cost($)_1"], accountData[0]["This Year Cost($)_2"], accountData[0]["This Year Cost($)_3"]],
           backgroundColor: "#093EDD",
           borderRadius: 5,
           borderSkipped: false,
