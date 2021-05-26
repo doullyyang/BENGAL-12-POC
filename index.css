@@ -1,8 +1,15 @@
+body {
+    padding: 50px;
+}
+
 .chart-container {
     font-family: Arial;
     border: 1px solid #CCCCCC;
     border-radius: 5px;
     padding: 50px 0;
+    background-color: white;
+    width: 800px;
+    height: 590px;
 }
 
 #chart {
