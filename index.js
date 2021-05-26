@@ -1,6 +1,26 @@
 d3.csv('/sample_2.csv')
   .then(makeChart);
 
+d3.csv('/sample_2.csv')
+  .then(handleCsv);
+
+function handleCsv(accountData) {
+  console.log(accountData[0])
+  let dataArea = document.getElementsByClassName('x-axis')[0]
+  console.log(dataArea.children[0].children)
+
+  let month1 = accountData[0]["Month_1"]
+  let lastYearTemp1 = accountData[0]["Last_year_avg_temp_1"]
+  let thisYearTemp1 = accountData[0]["This_year_avg_temp_1"]
+
+  tempHtml = `<div class="temperature">${lastYearTemp1}&#176; |  ${thisYearTemp1}&#176;</div>`
+  dataArea.children[0].children[0].innerHTML = tempHtml
+  
+  monthHtml = `<div class="month">${month1}</div>`
+  dataArea.children[0].children[1].innerHTML = monthHtml
+
+}
+
 Chart.plugins.register(ChartDataLabels);
 
 function makeChart(accountData) {
