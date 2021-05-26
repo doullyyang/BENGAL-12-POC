@@ -5,19 +5,19 @@ d3.csv('/sample_2.csv')
   .then(handleCsv);
 
 function handleCsv(accountData) {
-  console.log(accountData[0])
-  let dataArea = document.getElementsByClassName('x-axis')[0]
-  console.log(dataArea.children[0].children)
 
-  let month1 = accountData[0]["Month_1"]
-  let lastYearTemp1 = accountData[0]["Last_year_avg_temp_1"]
-  let thisYearTemp1 = accountData[0]["This_year_avg_temp_1"]
+  let months = [1, 2, 3]
 
-  tempHtml = `<div class="temperature">${lastYearTemp1}&#176; |  ${thisYearTemp1}&#176;</div>`
-  dataArea.children[0].children[0].innerHTML = tempHtml
-  
-  monthHtml = `<div class="month">${month1}</div>`
-  dataArea.children[0].children[1].innerHTML = monthHtml
+  for (let index = 0; index < months.length; index++) {
+    let monthNumber = months[index]
+    let lastYearTemp = 'Last_year_avg_temp_' + monthNumber
+    let thisYearTemp = 'This_year_avg_temp_' + monthNumber
+    let monthName = 'Month_' + monthNumber
+
+    document.getElementById(lastYearTemp).innerHTML = accountData[0][lastYearTemp]
+    document.getElementById(thisYearTemp).innerHTML = accountData[0][thisYearTemp]
+    document.getElementById(monthName).innerHTML = accountData[0][monthName]
+  }
 
 }
 
