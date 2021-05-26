@@ -58,10 +58,14 @@ var chart = new Chart('chart', {
 }
 
 window.onload = function() {
-  domtoimage.toBlob(document.getElementById("month-by-month-chart"))
-      .then(function(blob) {
-        blob.arrayBuffer().then(function(buffer) {
-          console.log(buffer);
+  document.getElementById("download-btn").onclick = function() {
+    domtoimage.toBlob(document.getElementById("month-by-month-chart"))
+        .then(function(blob) {
+          // chartBlob = blob;
+          blob.arrayBuffer().then(function(buffer) {
+            console.log(buffer);
+          });
+          window.saveAs(blob, "test.png");
         });
-      });
+  }
 }
