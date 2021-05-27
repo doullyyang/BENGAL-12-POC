@@ -87,3 +87,19 @@ function makeChart(accountData) {
     }
   });
 }
+
+
+window.onload = function () {
+  document.getElementById("download-btn").onclick = function () {
+    domtoimage.toBlob(document.getElementById("month-by-month-chart"))
+      .then(function (blob) {
+        //image as 'blob' https://developer.mozilla.org/en-US/docs/Web/API/Blob)
+        blob.arrayBuffer().then(function (buffer) {
+          //'buffer' is image in ArrayBuffer containing blob's data in binary form - probably what you wanna use.
+          console.log(buffer);
+        });
+
+        window.saveAs(blob, "test.png");
+      });
+  }
+}

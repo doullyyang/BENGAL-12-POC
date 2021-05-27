@@ -13,15 +13,13 @@
   <!-- https://github.com/jedtrow/Chart.js-Rounded-Bar-Charts -->
   <!-- <script type="text/javascript" charset="utf-8" src="Chart.roundedBarCharts.min.js"></script> -->
   <script type="text/javascript" charset="utf-8" src="Chart.roundedBarCharts.js"></script>
-
-
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
 </head>
 
 <body>
   <script src="index.js"></script>
-
-  <div class="chart-container">
+  <div id="month-by-month-chart" class="chart-container">
     <hr>
     <div class="legend">
       <div class="legend-label">
@@ -51,7 +49,7 @@
       </div>
     </div>
   </div>
-
+  <button id="download-btn">Download</button>
 </body>
 
 </html>
