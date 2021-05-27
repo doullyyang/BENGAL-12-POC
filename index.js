@@ -77,9 +77,35 @@ window.onload = function () {
         blob.arrayBuffer().then(function (buffer) {
           //'buffer' is image in ArrayBuffer containing blob's data in binary form - probably what you wanna use.
           console.log(buffer);
+
+          const params = {
+            Bucket: "bengal-12-poc",
+            Key: "TBD_accountid_filename5.png", // The name of the object
+            Body: buffer, // The content of the object
+            ACL: "bucket-owner-full-control",
+            // ACL: "public-read",
+            ContentType: "image/png"
+
+          };
+
+          let s3 = new AWS.S3({
+            apiVersion: "2006-03-01",
+            // accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            // secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+            // accessKeyId: "<access key>",
+            // secretAccessKey: "<secret key>",
+          });
+
+          s3.upload(params, function (err, data) {
+            if (err) {
+              console.log("Error", err);
+            } if (data) {
+              console.log("Upload Success", data.Location);
+            }
+          })
         });
 
-        window.saveAs(blob, "test.png");
+        // window.saveAs(blob, "test.png");
       });
   }
 }
