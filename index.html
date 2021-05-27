@@ -13,73 +13,13 @@
   <!-- https://github.com/jedtrow/Chart.js-Rounded-Bar-Charts -->
   <!-- <script type="text/javascript" charset="utf-8" src="Chart.roundedBarCharts.min.js"></script> -->
   <script type="text/javascript" charset="utf-8" src="Chart.roundedBarCharts.js"></script>
-
-
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
 </head>
 
 <body>
   <script src="index.js"></script>
-
-  <!-- <script>
-    d3.csv('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2814973/atp_wta.csv')
-      .then(makeChart);
-
-    function makeChart(players) {
-      // var playerLabels = players.map(function (d) {
-      //   return d.Name;
-      // });
-      // var weeksData = players.map(function (d) {
-      //   return d.Weeks;
-      // });
-      var chart = new Chart('chart', {
-        type: 'bar',
-        data: {
-          labels: ["February", "March", "April"],
-          datasets: [
-            {
-              label: "Year 1",
-              data: [1021, 1434, 1032],
-              backgroundColor: "#9FE0F8",
-              borderRadius: 5,
-              borderSkipped: false
-            },
-            {
-              label: "Year 2",
-              data: [1121, 1734, 1692],
-              backgroundColor: "#093EDD",
-              borderRadius: 5,
-              borderSkipped: false
-
-            }
-          ]
-        },
-        options: {
-          plugins: {
-            legend: {
-              align: "end",
-            },
-            plugins: {
-              datalabels: {
-                color: 'blue',
-                labels: {
-                  title: {
-                    font: {
-                      weight: 'bold'
-                    }
-                  },
-                  value: {
-                    color: 'green'
-                  }
-                }
-              }
-            }
-          }
-        }
-      });
-    }
-  </script> -->
-  <div class="chart-container">
+  <div id="month-by-month-chart" class="chart-container">
     <hr>
     <div class="legend">
       <div class="legend-label">
@@ -106,7 +46,7 @@
       </div>
     </div>
   </div>
-
+  <button id="download-btn">Download</button>
 </body>
 
 </html>
