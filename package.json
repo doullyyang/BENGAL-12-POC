@@ -1,26 +1,16 @@
 {
   "name": "bengal-12-poc",
-  "version": "1.0.0",
-  "description": "Proof of concept application to generate email chart from given CSV's.",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.16.0",
-    "chart.js": "^3.3.0",
-    "chartjs-node-canvas": "^3.2.0",
-    "chartjs-plugin-datalabels": "^2.0.0-rc.1"
-  },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/doullyyang/BENGAL-12-POC.git"
-  },
-  "bugs": {
-    "url": "https://github.com/doullyyang/BENGAL-12-POC/issues"
-  },
-  "homepage": "https://github.com/doullyyang/BENGAL-12-POC#readme"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  }
 }
