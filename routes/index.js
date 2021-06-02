@@ -17,7 +17,7 @@ fs.createReadStream(path.resolve('public', 'sample.csv'))
   .pipe(csv.parse({ headers: true }))
   .on('error', error => console.error(error))
   .on('data', function(row) {
-    console.log(row)
+    // console.log(row)
     const options = {
       accountNumber: row['Account Number'],
       lastYearData: [row['Last Year Cost($)_1'], row['Last Year Cost($)_2'], row['Last Year Cost($)_3']],
@@ -30,7 +30,10 @@ fs.createReadStream(path.resolve('public', 'sample.csv'))
       month2CurrentYearTemp: row.This_year_avg_temp_2,
       month3Label: row.Month_3,
       month3LastYearTemp: row.Last_year_avg_temp_3,
-      month3CurrentYearTemp: row.This_year_avg_temp_3
+      month3CurrentYearTemp: row.This_year_avg_temp_3,
+      // pull AWS keys from the environment to make available to frontend. not great but keeps them out of git
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
     }
 
     csvOptions.push(options)
@@ -44,7 +47,7 @@ router.get('/home', function (req, res, next) {
   // this just pulls the first row and sends to ejs template
   var options = csvOptions[0]
   res.render('home.ejs', options);
-  // res.send(csvOptions)
+  // res.send(options)
 });
 
 
