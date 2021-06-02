@@ -1,7 +1,8 @@
-/*
-*   Rounded Rectangle Extension for Bar Charts and Horizontal Bar Charts
-*   Tested with Charts.js 2.7.0
-*/
+import Chart from "chart.js";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+Chart.plugins.register(ChartDataLabels);
+
 Chart.elements.Rectangle.prototype.draw = function() {
 
     var ctx = this._chart.ctx;
@@ -91,17 +92,17 @@ Chart.elements.Rectangle.prototype.draw = function() {
 
     for (var i = 1; i < 4; i++) {
         corner = cornerAt(i);
-        nextCornerId = i+1;
+        var nextCornerId = i+1;
         if(nextCornerId == 4){
             nextCornerId = 0
         }
 
-        nextCorner = cornerAt(nextCornerId);
+        var nextCorner = cornerAt(nextCornerId);
 
-        width = corners[2][0] - corners[1][0];
-        height = corners[0][1] - corners[1][1];
-        x = corners[1][0];
-        y = corners[1][1];
+        var width = corners[2][0] - corners[1][0];
+        var height = corners[0][1] - corners[1][1];
+        var x = corners[1][0];
+        var y = corners[1][1];
 
         var radius = cornerRadius;
         // Fix radius being too large
@@ -114,11 +115,11 @@ Chart.elements.Rectangle.prototype.draw = function() {
 
         if(height < 0){
             // Negative values in a standard bar chart
-            x_tl = x;           x_tr = x+width;
-            y_tl = y+height;    y_tr = y+height;
+            var x_tl = x;           var x_tr = x+width;
+            var y_tl = y+height;    var y_tr = y+height;
 
-            x_bl = x;           x_br = x+width;
-            y_bl = y;           y_br = y;
+            var x_bl = x;           var x_br = x+width;
+            var y_bl = y;           var y_br = y;
 
             // Draw
             ctx.moveTo(x_bl+radius, y_bl);
@@ -133,11 +134,11 @@ Chart.elements.Rectangle.prototype.draw = function() {
 
         }else if(width < 0){
             // Negative values in a horizontal bar chart
-            x_tl = x+width;     x_tr = x;
-            y_tl= y;            y_tr = y;
+            var x_tl = x+width;     var x_tr = x;
+            var y_tl= y;            var y_tr = y;
 
-            x_bl = x+width;     x_br = x;
-            y_bl = y+height;    y_br = y+height;
+            var x_bl = x+width;     var x_br = x;
+            var y_bl = y+height;    var y_br = y+height;
 
             // Draw
             ctx.moveTo(x_bl+radius, y_bl);
