@@ -10,12 +10,12 @@
   var chart = new Chart('chart', {
     type: 'bar',
     data: {
-      labels: ["February", "March", "April"],
+      labels: [1, 2, 3],
       datasets: [
         {
           label: "Last Year",
           data: getLastYear,
-          // data: [1021, 1434, 1032],
+          // data: [11211, 12343, 10323],
           backgroundColor: "#9FE0F8",
           borderRadius: 5,
           borderSkipped: false,
@@ -28,6 +28,7 @@
           // label: "This Year",
           label: "This Year",
           data: getThisYear,
+          // data: [10211, 14341, 10321],
           backgroundColor: "#093EDD",
           borderRadius: 5,
           borderSkipped: false,
@@ -48,6 +49,9 @@
       },
       scales: {
         yAxes: [{
+          ticks: {
+            beginAtZero: true
+          },
           display: false,
         }],
         xAxes: [{
