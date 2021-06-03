@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
 import './chartConfig.js';
+import './upload.js';
 
 
 class MonthByMonthChart extends Component {
@@ -134,8 +135,11 @@ class MonthByMonthChart extends Component {
         });
     }
 
+    /*
+    This function will get called whenever the MonthByMonth chart is updated.
+     */
     componentDidUpdate() {
-    //    set state in a loop somewhere, but put following logic here.
+        uploadToS3();
     }
 
     /*
