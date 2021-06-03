@@ -90,6 +90,30 @@ class MonthByMonthChart extends Component {
             }
         };
         this.chartRef = React.createRef();
+        // this.gen = this.getAccount(1, csvResults.data)
+        this.gen = {};
+        this.updateChart = this.updateChart.bind(this);
+    }
+
+    *getAccount(accountSize = 1, accountList) {
+        let output = [];
+        let index = 0;
+    
+        while (index < accountList.length) {
+            output = [];
+            for (let i = index; i < index + accountSize; i++) {
+                if (accountList[i]) {
+                    output.push(accountList[i]);
+                }
+            }
+    
+            yield output;
+            index += accountSize;
+        }
+    }
+
+    formatAccountFromCsv(row) {
+        // make it look like state object
     }
 
 
@@ -97,10 +121,122 @@ class MonthByMonthChart extends Component {
     This function will automatically run once this component is loaded
      */
     componentDidMount() {
-        console.log(csvResults)
-        // uploadToS3(this.chartRef.current, this.state.accountNumber);
+        // console.log(csvResults.data[0])
+        // for (let account of csvResults.data) {
+        //     console.log('in for/of iterator')
+        //     console.log(account)
+        // }
+        this.gen = this.getAccount(1, csvResults.data)
+        const firstAccount = this.gen.next()
+        console.log(firstAccount)
 
-        // this.interval = setInterval(() => dummyFunction(), 1000);
+        this.setState({
+            accountNumber: firstAccount.value[0]["Account Number"],
+            month1Label: firstAccount.value[0]["Month_1"],
+            month1LastYearTemp: firstAccount.value[0]["Last_year_avg_temp_1"],
+            month1CurrentYearTemp: firstAccount.value[0]["This_year_avg_temp_1"],
+            month2Label: firstAccount.value[0]["Month_2"],
+            month2LastYearTemp: firstAccount.value[0]["Last_year_avg_temp_2"],
+            month2CurrentYearTemp: firstAccount.value[0]["This_year_avg_temp_2"],
+            month3Label: firstAccount.value[0]["Month_3"],
+            month3LastYearTemp: firstAccount.value[0]["Last_year_avg_temp_3"],
+            month3CurrentYearTemp: firstAccount.value[0]["This_year_avg_temp_3"],
+            data: {
+                labels: [1, 2, 3],
+                datasets: [
+                    {
+                        label: "Last Year",
+                        data: [firstAccount.value[0]["Last Year Cost($)_1"], firstAccount.value[0]["Last Year Cost($)_2"], firstAccount.value[0]["Last Year Cost($)_3"]],
+                        backgroundColor: "#9FE0F8",
+                        borderRadius: 5,
+                        borderSkipped: false
+                    },
+                    {
+                        label: "This Year",
+                        data: [firstAccount.value[0]["This Year Cost($)_1"], firstAccount.value[0]["This Year Cost($)_2"], firstAccount.value[0]["This Year Cost($)_3"]],
+                        backgroundColor: "#093EDD",
+                        borderRadius: 5,
+                        borderSkipped: false
+
+                    }
+                ]
+            }
+
+        })
+
+    }
+
+
+
+    /*
+    This function will get called whenever the MonthByMonth chart is updated.
+     */
+    componentDidUpdate() {
+
+        // // uploadToS3(this.chartRef.current, this.state.accountNumber)
+        // const iterator = csvResults.data[Symbol.iterator]();
+        
+        // let currentAccount = this.gen.next()
+
+        // assume returns promise
+        // uploadToS3(this.chartRef.current, this.state.accountNumber).then(function() {
+            
+        //     console.log(currentAccount)
+        //     if (currentAccount) {
+        //         updateChart(currentAccount)
+        //     }
+
+        // })
+        uploadToS3(this.chartRef.current, this.state.accountNumber).then(this.updateChart)
+    }
+
+    updateChart() {
+        let chartData = this.gen.next()
+        // console.log(this.gen)
+        console.log(chartData)
+
+        if (!chartData.done) {
+            this.setState({
+                accountNumber: chartData.value[0]["Account Number"],
+                month1Label: chartData.value[0]["Month_1"],
+                month1LastYearTemp: chartData.value[0]["Last_year_avg_temp_1"],
+                month1CurrentYearTemp: chartData.value[0]["This_year_avg_temp_1"],
+                month2Label: chartData.value[0]["Month_2"],
+                month2LastYearTemp: chartData.value[0]["Last_year_avg_temp_2"],
+                month2CurrentYearTemp: chartData.value[0]["This_year_avg_temp_2"],
+                month3Label: chartData.value[0]["Month_3"],
+                month3LastYearTemp: chartData.value[0]["Last_year_avg_temp_3"],
+                month3CurrentYearTemp: chartData.value[0]["This_year_avg_temp_3"],
+                data: {
+                    labels: [1, 2, 3],
+                    datasets: [
+                        {
+                            label: "Last Year",
+                            data: [chartData.value[0]["Last Year Cost($)_1"], chartData.value[0]["Last Year Cost($)_2"], chartData.value[0]["Last Year Cost($)_3"]],
+                            backgroundColor: "#9FE0F8",
+                            borderRadius: 5,
+                            borderSkipped: false
+                        },
+                        {
+                            label: "This Year",
+                            data: [chartData.value[0]["This Year Cost($)_1"], chartData.value[0]["This Year Cost($)_2"], chartData.value[0]["This Year Cost($)_3"]],
+                            backgroundColor: "#093EDD",
+                            borderRadius: 5,
+                            borderSkipped: false
+    
+                        }
+                    ]
+                }
+            })
+        }
+    }
+
+
+    /*
+    This function will automatically run once this component is unloaded
+     */
+    componentWillUnmount() {
+        // clear data and stuff if you want
     }
 
     /*
@@ -139,22 +275,8 @@ class MonthByMonthChart extends Component {
                 ]
             }
         });
-    }
+    };
 
-    /*
-    This function will get called whenever the MonthByMonth chart is updated.
-     */
-    componentDidUpdate() {
-        // how to get chart and account Number
-        uploadToS3(this.chartRef.current, this.state.accountNumber);
-    }
-
-    /*
-    This function will automatically run once this component is unloaded
-     */
-    componentWillUnmount() {
-        // clear data and stuff if you want
-    }
 
     render () {
         const { month1Label, month1LastYearTemp, month1CurrentYearTemp,
@@ -162,7 +284,7 @@ class MonthByMonthChart extends Component {
             month3Label, month3LastYearTemp, month3CurrentYearTemp, data} = this.state;
         return (
             <div id="month-by-month-chart" className="chart-container" ref={this.chartRef}>
-                <div id="chart-label">My energy use comparison</div>
+                <div className="chart-label">My energy use comparison</div>
                 <div className="top-line"></div>
                 <div className="legend">
                     <div className="legend-label">

@@ -10,7 +10,7 @@ body {
   height: 590px;
 }
 
-#chart-label {
+.chart-container .chart-label {
   font-size: 1.4rem;
   padding-left: 30px;
 }
