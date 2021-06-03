@@ -98,6 +98,8 @@ class MonthByMonthChart extends Component {
      */
     componentDidMount() {
         console.log(csvResults)
+        // uploadToS3(this.chartRef.current, this.state.accountNumber);
+
         // this.interval = setInterval(() => dummyFunction(), 1000);
     }
 
@@ -160,6 +162,7 @@ class MonthByMonthChart extends Component {
             month3Label, month3LastYearTemp, month3CurrentYearTemp, data} = this.state;
         return (
             <div id="month-by-month-chart" className="chart-container" ref={this.chartRef}>
+                <div id="chart-label">My energy use comparison</div>
                 <div className="top-line"></div>
                 <div className="legend">
                     <div className="legend-label">
