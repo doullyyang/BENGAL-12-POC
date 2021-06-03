@@ -36,9 +36,13 @@ class MonthByMonthChart extends Component {
                 datalabels: {
                     borderRadius: 4,
                     color: 'black',
-                    font: {
-                        weight: 'bold',
-                        size: 20
+                    font: function(context) {
+                        let year = context.dataset.label;
+                        if (year === 'This Year') {
+                            return {weight: 'bold', size: 20}
+                        } else {
+                            return {weight: 'normal',size: 20}
+                        }
                     },
                     // can use formatter to make any other adjustments to the label
                     formatter: function (value, context) {
@@ -128,7 +132,7 @@ class MonthByMonthChart extends Component {
         // }
         this.gen = this.getAccount(1, csvResults.data)
         const firstAccount = this.gen.next()
-        console.log(firstAccount)
+        // console.log(firstAccount)
 
         this.setState({
             accountNumber: firstAccount.value[0]["Account Number"],
@@ -173,27 +177,13 @@ class MonthByMonthChart extends Component {
      */
     componentDidUpdate() {
 
-        // // uploadToS3(this.chartRef.current, this.state.accountNumber)
-        // const iterator = csvResults.data[Symbol.iterator]();
-        
-        // let currentAccount = this.gen.next()
-
-        // assume returns promise
-        // uploadToS3(this.chartRef.current, this.state.accountNumber).then(function() {
-            
-        //     console.log(currentAccount)
-        //     if (currentAccount) {
-        //         updateChart(currentAccount)
-        //     }
-
-        // })
         uploadToS3(this.chartRef.current, this.state.accountNumber).then(this.updateChart)
     }
 
     updateChart() {
         let chartData = this.gen.next()
         // console.log(this.gen)
-        console.log(chartData)
+        // console.log(chartData)
 
         if (!chartData.done) {
             this.setState({
