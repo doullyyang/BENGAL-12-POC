@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
 import './chartConfig.js';
-import './upload.js';
+import {uploadToS3} from './upload.js';
 
 
 class MonthByMonthChart extends Component {
@@ -88,6 +88,7 @@ class MonthByMonthChart extends Component {
                 ]
             }
         };
+        this.chartRef = React.createRef();
     }
 
 
@@ -103,6 +104,7 @@ class MonthByMonthChart extends Component {
      */
     dummyFunction() {
         this.setState({
+            accountNumber: "react123456789",
             month1Label: 'February',
             month1LastYearTemp: 46,
             month1CurrentYearTemp: 41,
@@ -139,7 +141,8 @@ class MonthByMonthChart extends Component {
     This function will get called whenever the MonthByMonth chart is updated.
      */
     componentDidUpdate() {
-        uploadToS3();
+        // how to get chart and account Number
+        uploadToS3(this.chartRef.current, this.state.accountNumber);
     }
 
     /*
@@ -154,7 +157,7 @@ class MonthByMonthChart extends Component {
             month2Label, month2LastYearTemp, month2CurrentYearTemp,
             month3Label, month3LastYearTemp, month3CurrentYearTemp, data} = this.state;
         return (
-            <div id="month-by-month-chart" className="chart-container">
+            <div id="month-by-month-chart" className="chart-container" ref={this.chartRef}>
                 <div className="top-line"></div>
                 <div className="legend">
                     <div className="legend-label">

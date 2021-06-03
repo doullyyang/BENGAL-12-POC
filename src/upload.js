@@ -1,41 +1,38 @@
-uploadToS3 = function() {
-    let accountNumber = 1;
-    let chart = document.getElementById("month-by-month-chart");
-// let theNode = document.getElementById("another-wrapper");
+import domtoimage from 'dom-to-image';
+// import AWS from 'aws-sdk';
+import S3 from 'react-aws-s3';
 
-// domtoimage.toBlob(theNode, { height: 590, width: 800 })
-// only properly renders in firefox
+export const uploadToS3 = (chart, accountNumber) => {
     domtoimage.toBlob(chart)
         .then(function (blob) {
             blob.arrayBuffer().then(function (buffer) {
-                const params = {
-                    Bucket: "bengal-12-poc",
-                    Key: `${getAccountNumber}_chart.png`, // The name of the object
-                    Body: buffer, // The content of the object
-                    ACL: "bucket-owner-full-control",
-                    // ACL: "public-read",
-                    ContentType: "image/png"
-                };
+                // const params = {
+                //     Bucket: "bengal-12-poc",
+                //     Key: `${accountNumber}_chart.png`, // The name of the object
+                //     Body: buffer, // The content of the object
+                //     ACL: "bucket-owner-full-control",
+                //     // ACL: "public-read",
+                //     ContentType: "image/png"
+                // };
 
-                //TODO: npm install aws sdk
-                let s3 = new AWS.S3({
-                    apiVersion: "2006-03-01",
-                    // accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-                    // secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-                    accessKeyId: `${"<%= accessKeyId %>"}`,
-                    secretAccessKey: `${"<%= secretAccessKey %>"}`
-                });
+                const config = {
+                    bucketName: 'bengal-12-poc',
+                    region: 'us-east-1',
+                    accessKeyId: '123',
+                    secretAccessKey: '12345',
+                    s3Url: 'https://bengal-12-poc.s3.amazonaws.com/'
+                }
 
-                s3.upload(params, function (err, data) {
-                    if (err) {
-                        console.log("Error", err);
-                    }
-                    if (data) {
-                        console.log("Upload Success", data.Location);
-                    }
-                })
+                const ReactS3Client = new S3(config);
+
+                const newFileName = `${accountNumber}_chart.png`;
+
+                ReactS3Client
+                    .uploadFile(buffer, newFileName)
+                    .then(data => console.log(data))
+                    .catch(err => console.error(err))
+
             });
 
-            // window.saveAs(blob, "test.png");
         });
 }
