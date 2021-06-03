@@ -6,6 +6,7 @@ import './chartConfig.js';
 class MonthByMonthChart extends Component {
     static defaultProps = {
         options: {
+            animation: false,
             layout: {
                 padding: {
                     top: 20,
