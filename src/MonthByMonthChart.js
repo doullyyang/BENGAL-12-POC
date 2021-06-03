@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
 import './chartConfig.js';
 import {uploadToS3} from './upload.js';
+import csvResults from './csv.js';
 
 
 class MonthByMonthChart extends Component {
@@ -96,6 +97,7 @@ class MonthByMonthChart extends Component {
     This function will automatically run once this component is loaded
      */
     componentDidMount() {
+        console.log(csvResults)
         // this.interval = setInterval(() => dummyFunction(), 1000);
     }
 

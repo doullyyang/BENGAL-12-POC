@@ -31,7 +31,6 @@ export const uploadToS3 = (chart, accountNumber) => {
                     .uploadFile(buffer, newFileName)
                     .then(data => console.log(data))
                     .catch(err => console.error(err))
-
             });
 
         });
