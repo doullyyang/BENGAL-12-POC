@@ -2,11 +2,9 @@ import domtoimage from 'dom-to-image';
 import S3 from 'react-aws-s3';
 
 export const uploadToS3 = (chart, accountNumber) => {
-    // console.log(accountNumber)
-    // console.log(chart)
     let promise = domtoimage.toBlob(chart)
         .then(function (blob) {
-            console.log(process.env)
+            // console.log(process.env)
             const config = {
                 bucketName: 'bengal-12-poc',
                 region: 'us-east-1',
@@ -18,7 +16,6 @@ export const uploadToS3 = (chart, accountNumber) => {
             const ReactS3Client = new S3(config);
 
             const newFileName = `${accountNumber}_chart.png`;
-            // const newFileName = `20210603_sample_chart.png`;
 
             ReactS3Client
                 .uploadFile(blob, newFileName)
