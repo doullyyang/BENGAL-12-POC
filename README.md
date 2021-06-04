@@ -11,3 +11,4 @@
 
 ## To note
 - chart js version is 2.9.3, very different than 3.x
+- currently reads from csv string in sampleData.js, not sample.csv
