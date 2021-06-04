@@ -46,7 +46,7 @@ class MonthByMonthChart extends Component {
                     },
                     // can use formatter to make any other adjustments to the label
                     formatter: function (value, context) {
-                        return "$" + value;
+                        return "$" + parseInt(value, 10).toLocaleString();
                     },
                     padding: 6
                 }
@@ -195,7 +195,7 @@ class MonthByMonthChart extends Component {
                 <div className="x-axis">
                     <div className="x-axis-label">
                         <div className="temperature">
-                            {month1LastYearTemp}&#176; | {month1CurrentYearTemp}&#176;
+                            {month1LastYearTemp}&#176; &nbsp;|&nbsp; {month1CurrentYearTemp}&#176;
                         </div>
                         <div className="month">
                             {month1Label}
@@ -203,7 +203,7 @@ class MonthByMonthChart extends Component {
                     </div>
                     <div className="x-axis-label">
                         <div className="temperature">
-                            {month2LastYearTemp}&#176; | {month2CurrentYearTemp}&#176;
+                            {month2LastYearTemp}&#176; &nbsp;|&nbsp; {month2CurrentYearTemp}&#176;
                         </div>
                         <div className="month">
                             {month2Label}
@@ -211,7 +211,7 @@ class MonthByMonthChart extends Component {
                     </div>
                     <div className="x-axis-label">
                         <div className="temperature">
-                            {month3LastYearTemp}&#176; | {month3CurrentYearTemp}&#176;
+                            {month3LastYearTemp}&#176; &nbsp;|&nbsp; {month3CurrentYearTemp}&#176;
                         </div>
                         <div className="month">
                             {month3Label}
