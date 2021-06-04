@@ -46,7 +46,7 @@ class MonthByMonthChart extends Component {
                     },
                     // can use formatter to make any other adjustments to the label
                     formatter: function (value, context) {
-                        return "$" + value;
+                        return "$" + parseInt(value, 10).toLocaleString();
                     },
                     padding: 6
                 }
