@@ -1,3 +1,13 @@
 Account Number,Monthly Bill Date,Month_1,Last Year Cost($)_1,This Year Cost($)_1,Last_year_avg_temp_1,This_year_avg_temp_1,Month_2,Last Year Cost($)_2,This Year Cost($)_2,Last_year_avg_temp_2,This_year_avg_temp_2,Month_3,Last Year Cost($)_3,This Year Cost($)_3,Last_year_avg_temp_3,This_year_avg_temp_3
 0123455,03/12/21,February,1021,1121,46,41,March,1434,1734,47,45,April,1032,1692,55,58
-0123466,03/13/21,February,1111,2222,44,44,March,1444,11445,48,46,April,1033,1222,56,57
+0123466,03/13/21,February,1111,2222,44,44,March,1444,1144,48,46,April,1033,1222,56,57
+negativeTemp123,03/13/21,February,1111,2222,-5,-4,March,1444,1144,48,46,April,1033,1222,56,57
+singleDigitTemp123,03/13/21,February,1111,2222,1,2,March,1444,1144,48,46,April,1033,1222,56,57
+tripleDigitTemp123,03/13/21,February,1111,2222,101,102,March,1444,1144,48,46,April,1033,1222,56,57
+oneDigitCost123,03/13/21,February,1,2,44,44,March,1,2,48,46,April,8,2,56,57
+twoDigitCost123,03/13/21,February,22,25,44,44,March,22,25,48,46,April,25,58,56,57
+threeDigitCost123,03/13/21,February,333,350,44,44,March,334,355,48,46,April,300,320,56,57
+fourDigitCost123,03/13/21,February,4444,4500,44,44,March,4511,4623,48,46,April,4888,4101,56,57
+fiveDigitCost123,03/13/21,February,55555,56000,44,44,March,55236,52012,48,46,April,33001,54023,56,57
+sixDigitCost123,03/13/21,February,666666,67000,44,44,March,650897,620251,48,46,April,236547,23789,56,57
+decimalCost123,03/13/21,February,7896.65,7905.32,44,44,March,650897,620251,48,46,April,236547,23789,56,57

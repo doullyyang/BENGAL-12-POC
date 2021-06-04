@@ -12,3 +12,6 @@
 ## To note
 - chart js version is 2.9.3, very different than 3.x
 - currently reads from csv string in sampleData.js, not sample.csv
+- you may encounter a bug with how the style renders in chrome, related to how dom-to-image library works. Firefox works fine
+- if you upload files with the same name, it will overwrite what is already in the s3 bucket (on dev, bengal-12-poc is the bucket name)
+- only jacob's AWS keys work currently

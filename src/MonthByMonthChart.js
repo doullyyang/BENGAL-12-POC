@@ -11,7 +11,7 @@ class MonthByMonthChart extends Component {
             animation: false,
             layout: {
                 padding: {
-                    top: 20,
+                    top: 32,
                 }
             },
             cornerRadius: 5,
